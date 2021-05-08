@@ -1,0 +1,40 @@
+{
+  "name": "socket-app",
+  "version": "0.0.1",
+  "description": "Simple server app with rest ans wss endpoints",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "develop": "nodemon index.js",
+    "debug": "DEBUG_COLORS=1 DEBUG=app:* DEBUG_DEPTH=10 DEBUG_MAX_ARRAY_LENGTH=100 nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Denis Androic <crvicek@yahoo.com> (https://github.com/crvicek)",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "ws": "^7.4.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-align-assignments": "^1.1.2",
+    "mocha": "^8.4.0",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "reporter": [
+      "html",
+      "text"
+    ],
+    "exclude": [
+      "config",
+      "src/app.js",
+      "meta",
+      "test"
+    ]
+  }
+}
