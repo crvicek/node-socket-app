@@ -4,7 +4,7 @@ const express = require('express')
 const WS      = require('ws')
 const Redis   = require('ioredis')
 
-const { handleSocket } = require('./lib')
+const { handleSocket, handleREST } = require('./lib')
 
 module.exports = function () {
   const app    = express()
@@ -14,6 +14,10 @@ module.exports = function () {
 
   app.get('/health', (req, res) => {
     res.send('OK')
+  })
+
+  app.get('/rest/:key', (req, res) => {
+    handleREST({ req, res, redis })
   })
 
   wss.on('connection', socket => {
