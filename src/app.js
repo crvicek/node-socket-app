@@ -38,6 +38,7 @@ module.exports = function () {
 
   const stop = async () => {
     console.log('Stopping the app')
+    redis.disconnect()
     await new Promise(resolve => server.close(() => resolve()))
     console.log('App stoped')
   }

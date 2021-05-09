@@ -7,7 +7,7 @@
     "start": "node index.js",
     "develop": "nodemon index.js",
     "debug": "DEBUG_COLORS=1 DEBUG=app:* DEBUG_DEPTH=10 DEBUG_MAX_ARRAY_LENGTH=100 nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha"
   },
   "author": "Denis Androic <crvicek@yahoo.com> (https://github.com/crvicek)",
   "license": "ISC",
@@ -19,12 +19,15 @@
     "ws": "^7.4.5"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "eslint": "^7.26.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-align-assignments": "^1.1.2",
     "mocha": "^8.4.0",
     "nodemon": "^2.0.7",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "sinon": "^10.0.0"
   },
   "nyc": {
     "reporter": [

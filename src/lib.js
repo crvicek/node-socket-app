@@ -20,22 +20,24 @@ const getKey = async (key, redis) => {
   }
 
   const fullNamespace = `${config.redis.baseNamespace}:${key}`
-  const data          = await redis.get(fullNamespace)
-  if (data) debug(`Found data for ${fullNamespace}`)
-
-  return data
+  return redis.get(fullNamespace)
 }
 
 const handleREST = async ({ req, res, redis }) => {
   const { key } = req.params
   debug('Request key: ', key)
 
-  const value = await getKey(key, redis)
-  if (!value) {
-    return res.status(404).send('No value found for this key')
-  }
+  try {
+    const value = await getKey(key, redis)
+    if (!value) {
+      return res.status(404).send('No value found for this key')
+    }
 
-  res.send(value)
+    res.send(value)
+  } catch (e) {
+    console.error('Error processing the request', e)
+    return res.status(500).send('Error processing the request')
+  }
 }
 
 const handleSocket = function ({ socket, redis }) {
@@ -84,6 +86,8 @@ const handleSocket = function ({ socket, redis }) {
 }
 
 module.exports = {
-  handleSocket,
+  setKey,
+  getKey,
   handleREST,
+  handleSocket,
 }
