@@ -71,7 +71,7 @@ const handleSocket = function ({ socket, redis }) {
       console.error('Error processing the message', e)
       const errorObj = {
         type:    'Error',
-        payload: 'Could not process or save the message',
+        message: 'Could not process or save the message',
       }
       socket.send(JSON.stringify(errorObj))
     }

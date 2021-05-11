@@ -18,7 +18,7 @@ describe('Lib unit tests', () => {
     it('should call redis.set', async () => {
       fakeRedis.set = sinon.spy()
       await setKey('key', 'value', fakeRedis)
-      expect(fakeRedis.set.calledOnce).to.be.true
+      return expect(fakeRedis.set.calledOnce).to.be.true
     })
   })
 
@@ -30,6 +30,7 @@ describe('Lib unit tests', () => {
       const result         = await getKey('existingKey', fakeRedis)
       expect(result).to.equal(expectedResult)
     })
+
     it('should not throw if the value of the key if not found', async () => {
       fakeRedis.get = sinon.stub().resolves(null)
       const result  = await getKey('nonExistingKey', fakeRedis)
@@ -37,6 +38,7 @@ describe('Lib unit tests', () => {
     })
   })
 
+  // TODO add more unit tests
   // context('handleRest', () => {
   //   it('should ', async () => {
 

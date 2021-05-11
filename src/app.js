@@ -32,7 +32,7 @@ module.exports = function () {
       }
 
       console.log(`🚀 Server ready at http://localhost:${config.port}.`)
-      return resolve(server)
+      return resolve([ server, wss ])
     }))
   }
 
